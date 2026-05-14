@@ -1,19 +1,17 @@
 # 使用说明
 
 1. rattler-build 打包 C++ 项目
+
 2. pixi 安装、卸载 .conda 包，实现插件的管理
 
 ## rattler-build 使用
 
 ``` BASH
 # 编译，默认为 .conda 包
-rattler-build build \
-  --recipe recipe.yaml
+rattler-build build --recipe recipe.yaml
 
 # 编译，选择为 tar.bz2 包
-rattler-build build \
-  --recipe recipe.yaml \
-  --package-format tarbz2
+rattler-build build --recipe recipe.yaml --package-format tarbz2
 ```
 
 ## pixi 使用
@@ -36,40 +34,37 @@ pixi add --feature dev rattler-build
 
 pixi project environment add dev --feature dev
 
-pixi shell -e dev         # 进入 dev 环境
+pixi shell -e dev # 进入 dev 环境
 
 
 # 测试环境
 pixi add --feature test gtest
 
+pixi add --feature test pixi_demo
+
 pixi remove --feature test pixi_demo
 
 pixi project environment add test --feature test
 
-pixi shell -e test         # 进入 test 环境
+pixi shell -e test  # 进入 test 环境
 
-# 保留 feature，只删环境
-pixi project environment remove test
+pixi project environment remove test  # 保留 feature，只删环境
 ```
 
 ``` BASH
-# 安装
 pixi init # 在当前目录下初始化工程
 
-# 查看当前项目的所有环境
-pixi info
+pixi info # 查看当前项目的所有环境
 
-# 进入当前目录项目的默认环境（default）
-pixi shell
+pixi shell  # 进入当前目录项目的默认环境（default）
 
-# 进入指定环境（如果配置了多环境）
-pixi shell -e <环境名>
+pixi shell -e <环境名>  # 进入指定环境（如果配置了多环境）
 
 pixi project channel add ./output   # 添加本地 channel
 
-pixi add pixi_demo   # 用包名安装（不是文件路径）
+pixi add pixi_demo   # 用包名安装，全局安装
 
-pixi remove pixi_demo   # 用包名安装（不是文件路径）
+pixi remove pixi_demo   # 用包名安装，全局安装
 
-pixi run pixi_demo
+pixi run pixi_demo  # 运行安装的可执行文件
 ```
