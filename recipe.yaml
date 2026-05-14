@@ -1,0 +1,35 @@
+context:
+  version: "1.0.0"
+
+package:
+  name: pixi_demo
+  version: ${{ version }}
+
+build:
+  number: 0
+  script:
+    - cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$PREFIX
+    - cmake --build build
+    - cmake --install build
+
+source:
+  path: .
+
+requirements:
+  build:
+    - cmake
+    - ninja
+    - patchelf
+
+tests:
+  - script:
+      - test -f $PREFIX/bin/pixi_demo
+      - test -f $PREFIX/lib/libwidget.so
+
+about:
+  homepage: https://github.com/example/demo
+  license: MIT
+  license_family: MIT
+  summary: Demo project with PImpl pattern
+  description: |
+    A C++ demo project demonstrating the PImpl pattern.
